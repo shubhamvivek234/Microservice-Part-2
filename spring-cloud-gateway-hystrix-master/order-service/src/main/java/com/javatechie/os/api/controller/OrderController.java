@@ -18,8 +18,15 @@ public class OrderController {
     @Autowired
     private OrderService service;
     
+//    @PostMapping("/bookOrder")
+//    public TransactionResponse bookOrder(@RequestBody TransactionRequest request) {
+//        return service.saveOrder(request);
+//    }
+    
     @PostMapping("/bookOrder")
-    public TransactionResponse bookOrder(@RequestBody TransactionRequest request) {
-        return service.saveOrder(request);
-    }
+  public Order bookOrder(@RequestBody Order order) {
+      return service.saveOrder(order);
+  }
+    
+    
 }

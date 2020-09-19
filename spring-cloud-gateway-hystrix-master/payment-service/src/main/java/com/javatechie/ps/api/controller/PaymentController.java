@@ -19,10 +19,10 @@ public class PaymentController {
         return service.doPayment(payment);
     }
 
-    @GetMapping("/{orderId}")
-    public Payment findPaymentHistoryByOrderId(@PathVariable int orderId){
-              return service.findPaymentHistoryByOrderId(orderId);
-    }
+//    @GetMapping("/{orderId}")
+//    public Payment findPaymentHistoryByOrderId(@PathVariable int orderId){
+//              return service.findPaymentHistoryByOrderId(orderId);
+//    }
 
 
 }

@@ -23,3 +23,4 @@ public class Payment {
     private int orderId;
     private double amount;
 }
+ 

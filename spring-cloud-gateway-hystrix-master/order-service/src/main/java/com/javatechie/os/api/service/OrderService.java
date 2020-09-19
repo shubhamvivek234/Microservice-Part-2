@@ -20,29 +20,38 @@ import org.springframework.web.client.RestTemplate;
 @RefreshScope
 public class OrderService {
 
-    Logger logger= LoggerFactory.getLogger(OrderService.class);
+//    Logger logger= LoggerFactory.getLogger(OrderService.class);
     @Autowired
     private OrderRepository repository;
-    @Autowired
-    @Lazy
-    private RestTemplate template;
-
-    @Value("${microservice.payment-service.endpoints.endpoint.uri}")
-    private String ENDPOINT_URL;
-
-    public TransactionResponse saveOrder(TransactionRequest request) throws JsonProcessingException {
-        String response = "";
+//    @Autowired
+//    @Lazy
+//    private RestTemplate template;
+//
+//    @Value("${microservice.payment-service.endpoints.endpoint.uri}")
+//    private String ENDPOINT_URL;
+//
+    public TransactionResponse saveOrder(TransactionRequest request) {
+//        String response = "";
         Order order = request.getOrder();
         Payment payment = request.getPayment();
         payment.setOrderId(order.getId());
         payment.setAmount(order.getPrice());
-        //rest call
-        logger.info("Order-Service Request : "+new ObjectMapper().writeValueAsString(request));
-        Payment paymentResponse = template.postForObject(ENDPOINT_URL, payment, Payment.class);
-
-        response = paymentResponse.getPaymentStatus().equals("success") ? "payment processing successful and order placed" : "there is a failure in payment api , order added to cart";
-        logger.info("Order Service getting Response from Payment-Service : "+new ObjectMapper().writeValueAsString(response));
-        repository.save(order);
-        return new TransactionResponse(order, paymentResponse.getAmount(), paymentResponse.getTransactionId(), response);
+    
+//        //rest call
+//        logger.info("Order-Service Request : "+new ObjectMapper().writeValueAsString(request));
+//        Payment paymentResponse = template.postForObject(ENDPOINT_URL, payment, Payment.class);
+//
+//        response = paymentResponse.getPaymentStatus().equals("success") ? "payment processing successful and order placed" : "there is a failure in payment api , order added to cart";
+//        logger.info("Order Service getting Response from Payment-Service : "+new ObjectMapper().writeValueAsString(response));
+//        repository.save(order);
+//        return new TransactionResponse(order, paymentResponse.getAmount(), paymentResponse.getTransactionId(), response);
+        return repository.save(order);
+//    public Order saveOrder(Order order)
+//    {
+//    	
+//    return repository.save(order);
+    
+    
+    
     }
 }
